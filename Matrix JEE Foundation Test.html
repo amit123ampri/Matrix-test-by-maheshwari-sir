@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live-screen Maths by MAHESHWARI sir - Matrix Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        .question p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none; /* Hidden by default */
+        }
+        .correct-feedback {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect-feedback {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .initial-screen {
+            text-align: center;
+            padding: 40px;
+        }
+        .initial-screen input[type="email"],
+        .initial-screen input[type="text"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .initial-screen button, .quiz-submit-button, .download-button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px; /* Add margin for spacing */
+        }
+        .initial-screen button:hover, .quiz-submit-button:hover, .download-button:hover {
+            background-color: #0056b3;
+        }
+        .quiz-section {
+            display: none; /* Hidden by default */
+        }
+        .result-section {
+            display: none; /* Hidden by default */
+            text-align: center;
+            padding: 30px;
+            background-color: #e9f5ff;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .result-section h2 {
+            color: #0056b3;
+        }
+        .score {
+            font-size: 2em;
+            font-weight: bold;
+            color: #28a745;
+            margin: 15px 0;
+        }
+        .retake-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+        }
+        .retake-button:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Live-screen Maths by MAHESHWARI sir<br>Build the foundation for JEE with 11th & 12th Class</h1>
+
+        <div id="initialScreen" class="initial-screen">
+            <h2>Welcome to the Matrix Quiz!</h2>
+            <p>Please enter your name and email ID to start the quiz.</p>
+            <input type="text" id="studentName" placeholder="Your Name" required><br>
+            <input type="email" id="studentEmail" placeholder="Your Email ID (optional)"><br>
+            <button onclick="startQuiz()">Start Quiz</button>
+        </div>
+
+        <div id="quizSection" class="quiz-section">
+            <form id="matrixQuiz">
+                <div class="question">
+                    <p>1. What is the order of a matrix with m rows and n columns?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="A"> m × n</label>
+                        <label><input type="radio" name="q1" value="B"> n × m</label>
+                        <label><input type="radio" name="q1" value="C"> m+n</label>
+                        <label><input type="radio" name="q1" value="D"> m-n</label>
+                    </div>
+                    <div class="feedback" id="feedback1"></div>
+                </div>
+
+                <div class="question">
+                    <p>2. A square matrix is a matrix in which:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="A"> Number of rows is greater than number of columns</label>
+                        <label><input type="radio" name="q2" value="B"> Number of columns is greater than number of rows</label>
+                        <label><input type="radio" name="q2" value="C"> Number of rows is equal to number of columns</label>
+                        <label><input type="radio" name="q2" value="D"> All elements are zero</label>
+                    </div>
+                    <div class="feedback" id="feedback2"></div>
+                </div>
+
+                <div class="question">
+                    <p>3. If
+                        \[A = \begin{pmatrix} 2 & 3 \\ 4 & 5 \end{pmatrix}\]
+                        and
+                        \[B = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\],
+                        then A+B is:
+                    </p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="A"> \[\begin{pmatrix} 3 & 3 \\ 4 & 6 \end{pmatrix}\]</label>
+                        <label><input type="radio" name="q3" value="B"> \[\begin{pmatrix} 2 & 3 \\ 4 & 5 \end{pmatrix}\]</label>
+                        <label><input type="radio" name="q3" value="C"> \[\begin{pmatrix} 1 & 3 \\ 4 & 4 \end{pmatrix}\]</label>
+                        <label><input type="radio" name="q3" value="D"> \[\begin{pmatrix} 3 & 4 \\ 5 & 6 \end{pmatrix}\]</label>
+                    </div>
+                    <div class="feedback" id="feedback3"></div>
+                </div>
+
+                <div class="question">
+                    <p>4. The transpose of a matrix A is denoted by:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="A"> A<sup>-1</sup></label>
+                        <label><input type="radio" name="q4" value="B"> A<sup>T</sup></label>
+                        <label><input type="radio" name="q4" value="C"> |A|</label>
+                        <label><input type="radio" name="q4" value="D"> A*</label>
+                    </div>
+                    <div class="feedback" id="feedback4"></div>
+                </div>
+
+                <div class="question">
+                    <p>5. For two matrices A and B to be conformable for multiplication AB, the number of columns in A must be equal to:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="A"> Number of rows in B</label>
+                        <label><input type="radio" name="q5" value="B"> Number of columns in B</label>
+                        <label><input type="radio" name="q5" value="C"> Number of rows in A</label>
+                        <label><input type="radio" name="q5" value="D"> Number of columns in A</label>
+                    </div>
+                    <div class="feedback" id="feedback5"></div>
+                </div>
+
+                <div class="question">
+                    <p>6. The determinant of a 2 × 2 matrix \[\begin{pmatrix} a & b \\ c & d \end{pmatrix}\] is:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="A"> ad+bc</label>
+                        <label><input type="radio" name="q6" value="B"> ad-bc</label>
+                        <label><input type="radio" name="q6" value="C"> ac-bd</label>
+                        <label><input type="radio" name="q6" value="D"> ab-cd</label>
+                    </div>
+                    <div class="feedback" id="feedback6"></div>
+                </div>
+
+                <div class="question">
+                    <p>7. A diagonal matrix is a square matrix in which all non-diagonal elements are:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="A"> One</label>
+                        <label><input type="radio" name="q7" value="B"> Zero</label>
+                        <label><input type="radio" name="q7" value="C"> Negative</label>
+                        <label><input type="radio" name="q7" value="D"> Positive</label>
+                    </div>
+                    <div class="feedback" id="feedback7"></div>
+                </div>
+
+                <div class="question">
+                    <p>8. The identity matrix of order n × n is denoted by:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="A"> O</label>
+                        <label><input type="radio" name="q8" value="B"> I<sub>n</sub></label>
+                        <label><input type="radio" name="q8" value="C"> A</label>
+                        <label><input type="radio" name="q8" value="D"> J</label>
+                    </div>
+                    <div class="feedback" id="feedback8"></div>
+                </div>
+
+                <div class="question">
+                    <p>9. If A is a matrix and k is a scalar, then the element (kA)<sub>ij</sub> is equal to:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="A"> k + a<sub>ij</sub></label>
+                        <label><input type="radio" name="q9" value="B"> k × a<sub>ij</sub></label>
+                        <label><input type="radio" name="q9" value="C"> a<sub>ij</sub> / k</label>
+                        <label><input type="radio" name="q9" value="D"> a<sub>ij</sub> - k</label>
+                    </div>
+                    <div class="feedback" id="feedback9"></div>
+                </div>
+
+                <div class="question">
+                    <p>10. The inverse of a matrix A exists if and only if its determinant is:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="A"> Zero</label>
+                        <label><input type="radio" name="q10" value="B"> Non-zero</label>
+                        <label><input type="radio" name="q10" value="C"> Negative</label>
+                        <label><input type="radio" name="q10" value="D"> Positive</label>
+                    </div>
+                    <div class="feedback" id="feedback10"></div>
+                </div>
+
+                 <div class="question">
+                    <p>11. Which of the following is NOT a type of matrix?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="A"> Row Matrix</label>
+                        <label><input type="radio" name="q11" value="B"> Column Matrix</label>
+                        <label><input type="radio" name="q11" value="C"> Circular Matrix</label>
+                        <label><input type="radio" name="q11" value="D"> Zero Matrix</label>
+                    </div>
+                    <div class="feedback" id="feedback11"></div>
+                </div>
+
+                <div class="question">
+                    <p>12. For what value of x is the matrix \[\begin{pmatrix} 2 & x \\ 4 & 8 \end{pmatrix}\] singular?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="A"> 2</label>
+                        <label><input type="radio" name="q12" value="B"> 4</label>
+                        <label><input type="radio" name="q12" value="C"> 8</label>
+                        <label><input type="radio" name="q12" value="D"> 16</label>
+                    </div>
+                    <div class="feedback" id="feedback12"></div>
+                </div>
+
+                <div class="question">
+                     <p>13. If A and B are two matrices such that AB exists, then (AB)<sup>T</sup> is equal to:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="A"> A<sup>T</sup> B<sup>T</sup></label>
+                        <label><input type="radio" name="q13" value="B"> B<sup>T</sup> A<sup>T</sup></label>
+                        <label><input type="radio" name="q13" value="C"> AB</label>
+                        <label><input type="radio" name="q13" value="D"> BA</label>
+                    </div>
+                    <div class="feedback" id="feedback13"></div>
+                </div>
+
+                <div class="question">
+                    <p>14. The element in the i-th row and j-th column of a matrix A is denoted by:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="A"> a<sub>ji</sub></label>
+                        <label><input type="radio" name="q14" value="B"> a<sub>ij</sub></label>
+                        <label><input type="radio" name="q14" value="C"> A<sub>ij</sub></label>
+                        <label><input type="radio" name="q14" value="D"> A<sub>ji</sub></label>
+                    </div>
+                    <div class="feedback" id="feedback14"></div>
+                </div>
+
+                <div class="question">
+                    <p>15. What is a symmetric matrix?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="A"> A matrix where A = -A<sup>T</sup></label>
+                        <label><input type="radio" name="q15" value="B">
