@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live-screen Maths by MAHESHWARI sir - Matrix Quiz</title>
     <style>
-        /* General body styling */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -13,8 +12,6 @@
             background-color: #f4f4f4;
             color: #333;
         }
-
-        /* Container for the entire quiz */
         .container {
             max-width: 800px;
             margin: auto;
@@ -23,68 +20,48 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        /* Styling for main headings */
         h1, h2 {
             color: #0056b3;
             text-align: center;
             margin-bottom: 20px;
         }
-
-        /* Styling for individual questions */
         .question {
             margin-bottom: 20px;
             border-bottom: 1px solid #eee;
             padding-bottom: 15px;
         }
-
-        /* Styling for question text */
         .question p {
             font-weight: bold;
             margin-bottom: 10px;
         }
-
-        /* Styling for radio button options */
         .options label {
             display: block;
             margin-bottom: 8px;
             cursor: pointer;
         }
-
-        /* Styling for radio input elements */
         .options input[type="radio"] {
             margin-right: 10px;
         }
-
-        /* Styling for feedback messages (correct/incorrect) */
         .feedback {
             margin-top: 10px;
             padding: 10px;
             border-radius: 5px;
             display: none; /* Hidden by default */
         }
-
-        /* Styling for correct feedback */
         .correct-feedback {
             background-color: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
-
-        /* Styling for incorrect feedback */
         .incorrect-feedback {
             background-color: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
-
-        /* Styling for the initial screen (name/email input) */
         .initial-screen {
             text-align: center;
             padding: 40px;
         }
-
-        /* Styling for input fields on the initial screen */
         .initial-screen input[type="email"],
         .initial-screen input[type="text"] {
             padding: 10px;
@@ -94,9 +71,7 @@
             border: 1px solid #ddd;
             border-radius: 4px;
         }
-
-        /* Styling for all buttons */
-        .initial-screen button, .quiz-submit-button, .download-button, .retake-button {
+        .initial-screen button, .quiz-submit-button, .download-button {
             background-color: #007bff;
             color: white;
             padding: 12px 25px;
@@ -107,89 +82,41 @@
             transition: background-color 0.3s ease;
             margin-top: 10px; /* Add margin for spacing */
         }
-
-        /* Hover effect for buttons */
         .initial-screen button:hover, .quiz-submit-button:hover, .download-button:hover {
             background-color: #0056b3;
         }
-
-        /* Specific styling for the retake button */
-        .retake-button {
-            background-color: #6c757d; /* Different color for retake button */
-        }
-
-        /* Hover effect for retake button */
-        .retake-button:hover {
-            background-color: #5a6268;
-        }
-
-        /* Quiz section hidden by default */
         .quiz-section {
-            display: none;
+            display: none; /* Hidden by default */
         }
-
-        /* Result section hidden by default */
         .result-section {
-            display: none;
+            display: none; /* Hidden by default */
             text-align: center;
             padding: 30px;
             background-color: #e9f5ff;
             border-radius: 8px;
             margin-top: 20px;
         }
-
-        /* Styling for result section heading */
         .result-section h2 {
             color: #0056b3;
         }
-
-        /* Styling for the score display */
         .score {
             font-size: 2em;
             font-weight: bold;
             color: #28a745;
             margin: 15px 0;
         }
-
-        /* Modal styling for alerts */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 400px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-        }
-
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
-            text-decoration: none;
+        .retake-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+        }
+        .retake-button:hover {
+            background-color: #5a6268;
         }
     </style>
 </head>
@@ -438,25 +365,16 @@
         </div>
 
         <div id="resultSection" class="result-section">
-            <h2>MAHESHWARI Sir evaluation score</h2>
-            <p>Name: <span id="displayStudentName"></span></p>
-            <p>Email: <span id="displayStudentEmail"></span></p>
-            <p>You scored: <span id="scoreDisplay" class="score"></span> out of 20</p>
+            <h2>Quiz Results</h2>
+            <p><strong>Student Name:</strong> <span id="finalStudentName"></span></p>
+            <p><strong>Email ID:</strong> <span id="finalStudentEmail"></span></p>
+            <p>Your score: <span id="scoreDisplay" class="score"></span> / 20</p>
             <button class="download-button" onclick="downloadResults()">Download Results</button>
             <button class="retake-button" onclick="retakeQuiz()">Retake Quiz</button>
         </div>
     </div>
 
-    <div id="customModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <p id="modalMessage"></p>
-            <button onclick="closeModal()">OK</button>
-        </div>
-    </div>
-
     <script>
-        // Define correct answers for each question
         const correctAnswers = {
             q1: 'A', q2: 'C', q3: 'A', q4: 'B', q5: 'A',
             q6: 'B', q7: 'B', q8: 'B', q9: 'B', q10: 'B',
@@ -464,11 +382,10 @@
             q16: 'A', q17: 'A', q18: 'A', q19: 'B', q20: 'C'
         };
 
-        // Define feedback messages for correct and incorrect answers
         const feedbackMessages = {
             q1: {
                 correct: 'Correct! The order of a matrix is given by rows × columns.',
-                incorrect: 'Incorrect. The order of a matrix is given by rows × columns.'
+                incorrect: 'Incorrect. The order is m × n.'
             },
             q2: {
                 correct: 'Correct! In a square matrix, the number of rows equals the number of columns.',
@@ -548,170 +465,112 @@
             }
         };
 
-        // Global variables to store student information and quiz data
         let studentName = '';
         let studentEmail = '';
         let studentScore = 0;
-        let quizAttemptData = []; // Array to store detailed quiz attempt for download
+        let quizAttemptData = []; // To store detailed results for download
 
-        // Get modal elements
-        const customModal = document.getElementById('customModal');
-        const modalMessage = document.getElementById('modalMessage');
-        const closeButton = document.querySelector('.close-button');
-
-        // Function to display custom modal message
-        function showModal(message) {
-            modalMessage.textContent = message;
-            customModal.style.display = 'flex'; // Use flex to center content
-        }
-
-        // Function to close custom modal
-        function closeModal() {
-            customModal.style.display = 'none';
-        }
-
-        // Event listeners for closing modal
-        closeButton.addEventListener('click', closeModal);
-        window.addEventListener('click', (event) => {
-            if (event.target === customModal) {
-                closeModal();
-            }
-        });
-
-        /**
-         * Starts the quiz by validating student name and displaying the quiz section.
-         * Clears any previous quiz selections and feedback.
-         */
         function startQuiz() {
             studentName = document.getElementById('studentName').value.trim();
             studentEmail = document.getElementById('studentEmail').value.trim();
 
-            // Validate student name using custom modal
             if (studentName === '') {
-                showModal('Please enter your name to start the quiz.');
+                alert('Please enter your name to start the quiz.');
                 return;
             }
 
             // Clear previous selections and feedback on retake
             const quizForm = document.getElementById('matrixQuiz');
-            quizForm.reset(); // Resets all form fields (radio buttons)
+            quizForm.reset(); // Resets all form fields
             const feedbackDivs = document.querySelectorAll('.feedback');
             feedbackDivs.forEach(div => {
-                div.style.display = 'none'; // Hide feedback divs
-                div.className = 'feedback'; // Reset feedback styling
+                div.style.display = 'none';
+                div.className = 'feedback'; // Remove correct/incorrect classes
             });
 
-            // Hide initial screen and show quiz section
             document.getElementById('initialScreen').style.display = 'none';
             document.getElementById('quizSection').style.display = 'block';
             document.getElementById('resultSection').style.display = 'none'; // Ensure results are hidden
         }
 
-        /**
-         * Handles the quiz submission, calculates score, displays feedback,
-         * and shows the result section.
-         */
         document.getElementById('matrixQuiz').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission (page reload)
-            studentScore = 0; // Reset score for the current attempt
-            quizAttemptData = []; // Clear previous attempt data for detailed report
+            event.preventDefault(); // Prevent default form submission
+            studentScore = 0; // Reset score for new submission
+            quizAttemptData = []; // Clear previous attempt data
 
-            // Iterate through each question to check answers and provide feedback
             for (let i = 1; i <= 20; i++) {
                 const questionName = `q${i}`;
-                // Get the selected radio button for the current question
                 const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
                 const feedbackDiv = document.getElementById(`feedback${i}`);
 
                 let isCorrect = false;
                 let userAnswer = '';
-                const questionText = document.querySelector(`[name="${questionName}"]`).closest('.question').querySelector('p').innerText.trim();
 
                 if (selectedOption) {
                     userAnswer = selectedOption.value;
                     if (userAnswer === correctAnswers[questionName]) {
-                        studentScore++; // Increment score if correct
+                        studentScore++;
                         isCorrect = true;
                         feedbackDiv.className = 'feedback correct-feedback';
-                        feedbackDiv.innerHTML = `<strong>Correct!</strong> ${feedbackMessages[questionName].correct}`;
+                        feedbackDiv.innerHTML = feedbackMessages[questionName].correct;
                     } else {
                         feedbackDiv.className = 'feedback incorrect-feedback';
-                        feedbackDiv.innerHTML = `<strong>Incorrect.</strong> Your answer: ${userAnswer}. ${feedbackMessages[questionName].incorrect} (Correct: ${correctAnswers[questionName]})`;
+                        feedbackDiv.innerHTML = feedbackMessages[questionName].incorrect + ` (Correct: ${correctAnswers[questionName]})`;
                     }
                 } else {
-                    // If no option was selected
                     feedbackDiv.className = 'feedback incorrect-feedback';
-                    feedbackDiv.innerHTML = `<strong>No answer selected.</strong> The correct answer was: ${correctAnswers[questionName]}. ${feedbackMessages[questionName].incorrect}`;
+                    feedbackDiv.innerHTML = 'No answer selected. (Correct: ' + correctAnswers[questionName] + ')';
                 }
-                feedbackDiv.style.display = 'block'; // Show the feedback for each question
+                feedbackDiv.style.display = 'block';
 
-                // Store detailed attempt data for CSV download
                 quizAttemptData.push({
-                    question: questionText,
+                    question: document.querySelector(`[name="${questionName}"]`).closest('.question').querySelector('p').innerText.trim(),
                     userAnswer: userAnswer,
                     correctAnswer: correctAnswers[questionName],
                     isCorrect: isCorrect
                 });
             }
 
-            // Hide quiz section and show result section
             document.getElementById('quizSection').style.display = 'none';
             document.getElementById('resultSection').style.display = 'block';
-
-            // Display student's name, email, and score in the result section
-            document.getElementById('displayStudentName').textContent = studentName;
-            document.getElementById('displayStudentEmail').textContent = studentEmail === '' ? 'Not provided' : studentEmail;
-            document.getElementById('scoreDisplay').textContent = studentScore;
+            document.getElementById('finalStudentName').innerText = studentName;
+            document.getElementById('finalStudentEmail').innerText = studentEmail || 'N/A';
+            document.getElementById('scoreDisplay').innerText = studentScore;
         });
 
-        /**
-         * Generates and downloads a CSV file containing the quiz results.
-         * Includes overall score and detailed answers for each question.
-         */
         function downloadResults() {
             let csvContent = "data:text/csv;charset=utf-8,";
-
-            // Add overall student info and score
             csvContent += "Name,Email,Total Score\n";
-            csvContent += `"${studentName.replace(/"/g, '""')}","${studentEmail.replace(/"/g, '""')}",${studentScore}/20\n\n`;
+            csvContent += `"${studentName}","${studentEmail}",${studentScore}/20\n\n`;
 
-            // Add header for detailed question results
             csvContent += "Question,User Answer,Correct Answer,Status\n";
-
-            // Add detailed results for each question
-            quizAttemptData.forEach(function(item) {
-                // Escape double quotes within text fields for CSV compatibility
-                const questionText = `"${item.question.replace(/"/g, '""')}"`;
-                const userAnswer = `"${item.userAnswer.replace(/"/g, '""')}"`;
-                const correctAnswer = `"${item.correctAnswer.replace(/"/g, '""')}"`;
+            quizAttemptData.forEach(item => {
+                const questionText = `"${item.question.replace(/"/g, '""')}"`; // Handle commas/quotes in question text
+                const userAnswer = `"${item.userAnswer}"`;
+                const correctAnswer = `"${item.correctAnswer}"`;
                 const status = item.isCorrect ? 'Correct' : 'Incorrect';
                 csvContent += `${questionText},${userAnswer},${correctAnswer},${status}\n`;
             });
 
-            // Create a temporary link element to trigger the download
             const encodedUri = encodeURI(csvContent);
             const link = document.createElement("a");
             link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `${studentName.replace(/ /g, '_')}_Matrix_Quiz_Results.csv`); // Dynamic filename
-            document.body.appendChild(link); // Required for Firefox to click
-            link.click(); // Programmatically click the link to trigger download
-            document.body.removeChild(link); // Clean up the temporary link
+            link.setAttribute("download", `${studentName.replace(/ /g, '_')}_Matrix_Quiz_Results.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
-        /**
-         * Resets the quiz to its initial state, allowing the user to retake it.
-         * Clears input fields and resets quiz data.
-         */
         function retakeQuiz() {
-            document.getElementById('resultSection').style.display = 'none'; // Hide results
-            document.getElementById('initialScreen').style.display = 'block'; // Show initial screen
-            document.getElementById('studentName').value = ''; // Clear name input
-            document.getElementById('studentEmail').value = ''; // Clear email input
-            studentName = ''; // Reset student name variable
-            studentEmail = ''; // Reset student email variable
-            studentScore = 0; // Reset score
-            quizAttemptData = []; // Clear all stored quiz attempt data
-            // The startQuiz function will handle resetting form selections and feedback visibility.
+            document.getElementById('resultSection').style.display = 'none';
+            document.getElementById('initialScreen').style.display = 'block';
+            document.getElementById('studentName').value = ''; // Clear name
+            document.getElementById('studentEmail').value = ''; // Clear email
+            studentName = '';
+            studentEmail = '';
+            studentScore = 0;
+            quizAttemptData = [];
+            // Reset quiz elements (radio buttons, feedback) handled by startQuiz()
         }
     </script>
 
